@@ -1,0 +1,120 @@
+/* ========================================================
+   FEUILLE DE STYLE CYBERSÉCURITÉ & EFFETS TERMINAL
+   ======================================================== */
+
+/* Défilement fluide et style général */
+html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+}
+
+/* Scrollbar personnalisée style Hacker / Cyber */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 4px;
+    border: 1px solid #334155;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #06b6d4;
+}
+
+/* Effet de lueur et bordures néon subtiles */
+.cyber-glow {
+    box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
+}
+
+.cyber-glow-emerald {
+    box-shadow: 0 0 25px rgba(16, 185, 129, 0.15);
+}
+
+/* Animations d'entrée pour les cartes */
+.project-card {
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+}
+
+/* Curseur clignotant pour le terminal */
+.terminal-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 15px;
+    background-color: #06b6d4;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Style des sorties du terminal */
+.terminal-output-line {
+    animation: fadeIn 0.15s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Boutons actifs de filtre */
+.filter-btn.active {
+    background-color: #06b6d4 !important;
+    color: #020617 !important;
+    font-weight: 700;
+}
+
+/* ========================================================
+   STYLES D'IMPRESSION DU CV (A4 PROPRE)
+   ======================================================== */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+    #cv-modal, #cv-modal * {
+        visibility: visible;
+    }
+    #cv-modal {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: white !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    #cv-modal > div {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+    }
+    #cv-modal .bg-slate-900 {
+        display: none !important; /* Cache la barre de contrôle à l'impression */
+    }
+    #cv-printable {
+        padding: 20px !important;
+        color: black !important;
+    }
+}

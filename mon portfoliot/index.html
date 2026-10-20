@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KANKOE Ekoué Mawuko Barnabé | Portfolio Informatique & Cybersécurité</title>
+    <meta name="description" content="Portfolio de KANKOE Ekoué Mawuko Barnabé, étudiant en Licence 2 d'Informatique à ESIG Global Success. Certifié Cisco et WorldTech University en cybersécurité et réseaux.">
+    <link rel="stylesheet" href="style.css">
+    ²<!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            dark: '#080c14',
+                            card: '#0f172a',
+                            border: '#1e293b',
+                            cyan: '#06b6d4',
+                            emerald: '#10b981',
+                            purple: '#a855f7',
+                            red: '#ef4444',
+                            amber: '#f59e0b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-[#080c14] text-slate-200 font-sans antialiased selection:bg-cyan-500/30 selection:text-cyan-300 relative min-h-screen">
+
+    <!-- Canvas d'animation Matrix / Cyber Grille en arrière-plan -->
+    <canvas id="cyber-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-20"></canvas>
+
+    <!-- Navigation Bar -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#080c14]/85 backdrop-blur-md border-b border-slate-800/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#hero" class="flex items-center gap-2.5 font-mono text-cyan-400 font-bold text-lg group">
+                <img src="photo-barnabe.jpg" alt="Photo Barnabé" class="w-8 h-8 rounded-full object-cover border border-cyan-400/50 shadow-sm shadow-cyan-500/30">
+                <span class="tracking-tight text-white group-hover:text-cyan-400 transition-colors">barnabe.sec</span>
+                <span class="w-2 h-4 bg-cyan-400 animate-pulse inline-block"></span>
+            </a>
+
+            <!-- Liens de navigation Desktop -->
+            <nav class="hidden md:flex items-center gap-6 font-mono text-sm text-slate-400">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">01. // Formations</a>
+                <a href="#certifications" class="hover:text-cyan-400 transition-colors">02. // Certifications (5)</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">03. // Compétences</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">04. // Projets</a>
+                <a href="#terminal-section" class="hover:text-cyan-400 transition-colors">05. // Terminal CLI</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">06. // Contact</a>
+            </nav>
+
+            <!-- Actions droite : CV & Contact -->
+            <div class="flex items-center gap-3">
+                <button id="open-cv-btn-nav" class="px-3.5 py-1.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-sm font-medium transition-all flex items-center gap-1.5">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    <span>Mon CV (PDF)</span>
+                </button>
+                <a href="tel:+22870663513" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-xs font-semibold transition-all">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                    <span>+228 70 66 35 13</span>
+                </a>
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-400 hover:text-white p-2">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Menu Mobile déroulant -->
+        <div id="mobile-menu" class="hidden md:hidden px-4 pt-2 pb-4 bg-[#0d1322] border-b border-slate-800 space-y-2 font-mono text-sm">
+            <a href="#about" class="block py-2 text-slate-300 hover:text-cyan-400">01. // Formations</a>
+            <a href="#certifications" class="block py-2 text-slate-300 hover:text-cyan-400">02. // Certifications (5)</a>
+            <a href="#skills" class="block py-2 text-slate-300 hover:text-cyan-400">03. // Compétences</a>
+            <a href="#projects" class="block py-2 text-slate-300 hover:text-cyan-400">04. // Projets</a>
+            <a href="#terminal-section" class="block py-2 text-slate-300 hover:text-cyan-400">05. // Terminal CLI</a>
+            <a href="#contact" class="block py-2 text-slate-300 hover:text-cyan-400">06. // Contact</a>
+            <div class="pt-2 border-t border-slate-800 flex flex-col gap-2">
+                <button id="open-cv-btn-mobile" class="w-full text-center py-2 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-sans text-xs">
+                    Consulter mon CV
+                </button>
+                <a href="tel:+22870663513" class="w-full text-center py-2 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-sans text-xs">
+                    Appeler (+228 70 66 35 13)
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
+
+        <!-- ================= HERO SECTION ================= -->
+        <section id="hero" class="min-h-[80vh] flex flex-col justify-center py-12">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Texte d'accroche -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-slate-800/80 border border-slate-700/80 font-mono text-xs text-slate-300">
+                            <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
+                            <span>Licence 2 Informatique • ESIG Global Success</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-amber-500/10 border border-amber-500/30 font-mono text-xs text-amber-300">
+                            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-400"></i>
+                            <span>Certifié Sécurité & Réseaux</span>
+                        </div>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                        KANKOE Ekoué <br class="hidden sm:inline"/>
+                        <span class="bg-gradient-to-r from-cyan-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Mawuko Barnabé</span>
+                    </h1>
+
+                    <p class="text-slate-300 text-base sm:text-lg max-w-2xl leading-relaxed">
+                        Étudiant en deuxième année de Licence en Informatique à <span class="text-white font-semibold">ESIG Global Success</span>. Motivé, sérieux et désireux de développer mes compétences dans le domaine du numérique, je m’intéresse à la programmation, aux systèmes d’exploitation (<span class="text-emerald-300 font-mono font-semibold">Linux & Windows</span>), à la sécurité réseau et à la création de pages web.
+                    </p>
+
+                    <!-- Coordonnées directes cliquables sous le titre -->
+                    <div class="flex flex-wrap items-center gap-4 text-xs font-mono">
+                        <a href="tel:+22870663513" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-emerald-400 border border-slate-700 transition-colors">
+                            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                            <span>+228 70 66 35 13</span>
+                        </a>
+                        <a href="mailto:barnabekankoe58@gmail.com" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/80 hover:bg-slate-700 text-cyan-400 border border-slate-700 transition-colors">
+                            <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+                            <span>barnabekankoe58@gmail.com</span>
+                        </a>
+                        <a href="https://wa.me/22870663513" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 transition-colors">
+                            <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                            <span>WhatsApp Direct</span>
+                        </a>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button id="open-cv-btn-hero" class="px-5 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+                            <i data-lucide="file-text" class="w-4 h-4"></i>
+                            <span>Consulter mon CV</span>
+                        </button>
+                        <a href="#certifications" class="px-5 py-3 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 font-medium text-sm border border-emerald-500/40 transition-all flex items-center gap-2">
+                            <i data-lucide="award" class="w-4 h-4 text-emerald-400"></i>
+                            <span>Voir mes Certifications (5)</span>
+                        </a>
+                        <a href="#projects" class="px-5 py-3 rounded-lg bg-slate-800 hover:bg-slate-700 text-white font-medium text-sm border border-slate-700 transition-all flex items-center gap-2">
+                            <i data-lucide="layers" class="w-4 h-4 text-cyan-400"></i>
+                            <span>Mes projets</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mini Widget Carte Cyber / Profil Interactif avec Photo Officielle -->
+                <div class="lg:col-span-5">
+                    <div class="relative rounded-2xl bg-[#0f172a]/95 border border-slate-700/80 p-6 shadow-2xl shadow-cyan-950/40 overflow-hidden group">
+                        <div class="absolute -top-24 -right-24 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                        <div class="absolute -bottom-24 -left-24 w-60 h-60 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                        <!-- Header de la carte : Onglet terminal & statut -->
+                        <div class="flex items-center justify-between border-b border-slate-800 pb-4 mb-5">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+                                <span class="w-3 h-3 rounded-full bg-emerald-500/80"></span>
+                                <span class="ml-2 font-mono text-xs text-slate-400 font-semibold">identity_badge.v2</span>
+                            </div>
+                            <span class="inline-flex items-center gap-1.5 text-[10px] font-mono px-2.5 py-1 rounded-full bg-emerald-950/80 text-emerald-400 border border-emerald-800/80 font-bold">
+                                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                                DISPO STAGE
+                            </span>
+                        </div>
+
+                        <!-- Profil avec Photo Haute Définition -->
+                        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-4 mb-5 pb-5 border-b border-slate-800/80">
+                            <!-- Cadre photo avec liseré cyber dégradé -->
+                            <div class="relative flex-shrink-0 group/photo cursor-pointer" onclick="openImageModal('photo-barnabe.jpg', 'KANKOE Ekoué Mawuko Barnabé')">
+                                <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl p-1 bg-gradient-to-tr from-cyan-500 via-teal-400 to-emerald-400 shadow-xl shadow-cyan-500/20">
+                                    <img src="photo-barnabe.jpg" alt="Photo KANKOE Ekoué Mawuko Barnabé" class="w-full h-full object-cover rounded-xl bg-slate-900 transition-transform duration-300 group-hover/photo:scale-105">
+                                </div>
+                                <div class="absolute -bottom-2 -right-2 bg-slate-900 border border-cyan-500/60 rounded-full p-1.5 text-cyan-400 shadow-md" title="Profil Officiel Vérifié">
+                                    <i data-lucide="shield-check" class="w-4 h-4"></i>
+                                </div>
+                            </div>
+
+                            <!-- Détails de l'étudiant -->
+                            <div class="text-center sm:text-left space-y-1.5 flex-1">
+                                <div class="text-[11px] font-mono text-cyan-400 font-semibold uppercase tracking-wider">// Profil Officiel</div>
+                                <h3 class="text-lg font-bold text-white leading-snug">
+                                    KANKOE Ekoué <br class="hidden sm:inline"/>Mawuko Barnabé
+                                </h3>
+                                <p class="text-xs text-slate-300">
+                                    Étudiant en Licence 2 Informatique
+                                </p>
+                                <p class="text-[11px] text-slate-400 font-mono">
+                                    ESIG Global Success • Lomé, Togo
+                                </p>
+                                <div class="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 pt-1">
+                                    <span class="px-2 py-0.5 rounded bg-cyan-950/60 text-[10px] font-mono text-cyan-300 border border-cyan-800/60">Cybersécurité</span>
+                                    <span class="px-2 py-0.5 rounded bg-emerald-950/60 text-[10px] font-mono text-emerald-300 border border-emerald-800/60">Réseaux</span>
+                                    <span class="px-2 py-0.5 rounded bg-purple-950/60 text-[10px] font-mono text-purple-300 border border-purple-800/60">Linux</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Code JSON interactif / profil -->
+                        <div class="font-mono text-xs space-y-1.5 text-slate-300 bg-slate-950/70 p-3.5 rounded-xl border border-slate-800/80">
+                            <div><span class="text-purple-400">"statut"</span>: <span class="text-emerald-400">"Recherche active de stage"</span>,</div>
+                            <div><span class="text-purple-400">"certifications"</span>: <span class="text-amber-300">5 certifs (Cisco, WTU & ESIG)</span>,</div>
+                            <div><span class="text-purple-400">"systemes"</span>: [<span class="text-emerald-300">"Linux"</span>, <span class="text-cyan-300">"Windows"</span>],</div>
+                            <div><span class="text-purple-400">"telephone"</span>: <span class="text-emerald-300">"+228 70 66 35 13"</span></div>
+                        </div>
+
+                        <!-- Mini stats banner -->
+                        <div class="mt-4 pt-4 border-t border-slate-800/80 grid grid-cols-3 gap-2 text-center">
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                                <div class="text-sm font-bold text-cyan-400 font-mono">ESIG GS</div>
+                                <div class="text-[11px] text-slate-400">Licence 1 & 2</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                                <div class="text-sm font-bold text-amber-400 font-mono">5 Certifs</div>
+                                <div class="text-[11px] text-slate-400">Cisco, WTU & ESIG</div>
+                            </div>
+                            <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                                <div class="text-sm font-bold text-emerald-400 font-mono">Bac D</div>
+                                <div class="text-[11px] text-slate-400">Scientifique</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= STATS BANNER ================= -->
+        <section class="py-6 my-10 border-y border-slate-800/80 bg-slate-900/30 backdrop-blur-sm rounded-xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 px-4">
+                <div class="flex items-center gap-4">
+                    <div class="p-3 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400">
+                        <i data-lucide="graduation-cap" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold font-mono text-white">Licence 1 & 2</div>
+                        <div class="text-xs text-slate-400 font-medium">ESIG Global Success (Lomé)</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400">
+                        <i data-lucide="award" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold font-mono text-white">5 Certificats</div>
+                        <div class="text-xs text-slate-400 font-medium">Cisco, WorldTech & ESIG</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400">
+                        <i data-lucide="terminal" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold font-mono text-white">Linux & Windows</div>
+                        <div class="text-xs text-slate-400 font-medium">Sécurité Réseau, Pare-feu & Zero Trust</div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="p-3 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
+                        <i data-lucide="code-2" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <div class="text-xl font-bold font-mono text-white">Web & Dev</div>
+                        <div class="text-xs text-slate-400 font-medium">Java, Python, HTML/CSS & SQL</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION CERTIFICATIONS OFFICIELLES (5) ================= -->
+        <section id="certifications" class="py-16">
+            <div class="mb-12">
+                <div class="font-mono text-xs text-cyan-400 mb-2">// 02. CERTIFICATIONS OFFICIELLES VÉRIFIÉES</div>
+                <h2 class="text-3xl font-bold text-white tracking-tight flex items-center gap-3">
+                    <span>Mes Certifications Officielles</span>
+                    <span class="px-2.5 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono font-semibold">5 Certificats Vérifiés</span>
+                </h2>
+                <p class="text-slate-400 mt-2 max-w-2xl text-sm">
+                    Attestations de réussite et bilans des réalisations obtenus auprès de <strong>WorldTech University</strong>, <strong>Cisco Networking Academy</strong> et <strong>ESIG Global Success</strong>.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+                <!-- Certificat 1 : WorldTech University - Fondamentaux de la sécurité réseau -->
+                <div class="rounded-2xl bg-[#0f172a] border border-amber-500/40 hover:border-amber-400 transition-all p-6 flex flex-col justify-between group shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
+                            <span class="px-2.5 py-1 rounded bg-amber-950 text-amber-300 border border-amber-800/60 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-400"></i>
+                                WORLDTECH UNIVERSITY
+                            </span>
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 17 Oct 2026
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">
+                            Fondamentaux de la sécurité réseau
+                        </h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Formation complète de 25 leçons validées : pensée du défenseur réseau, pare-feu, segmentation réseau, modèle Zero Trust, accès distant sécurisé, sécurité Wi-Fi et durcissement (Hardening).
+                        </p>
+
+                        <!-- Aperçu du certificat stylisé avec modules validés -->
+                        <div class="rounded-xl border border-slate-700 bg-slate-900/90 p-4 font-mono text-xs space-y-2 mb-4">
+                            <div class="text-slate-400 text-[11px] font-semibold border-b border-slate-800 pb-1">
+                                BILAN DES 5 MODULES COMPLÉTÉS :
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                                <i data-lucide="check" class="w-3 h-3 flex-shrink-0"></i>
+                                <span>Thinking Like a Network Defender</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                                <i data-lucide="check" class="w-3 h-3 flex-shrink-0"></i>
+                                <span>Firewalls</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                                <i data-lucide="check" class="w-3 h-3 flex-shrink-0"></i>
+                                <span>Segmentation, Zero Trust & Remote Access</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                                <i data-lucide="check" class="w-3 h-3 flex-shrink-0"></i>
+                                <span>Secure Wi-Fi</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 text-emerald-400 text-[11px]">
+                                <i data-lucide="check" class="w-3 h-3 flex-shrink-0"></i>
+                                <span>Monitoring and Hardening</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Bénéficiaire :</span>
+                                <span class="text-white font-semibold">Ekoué M. B. KANKOE</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Enseignant :</span>
+                                <span class="text-slate-300">Mohammed Muneef</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>ID Certificat :</span>
+                                <span class="text-amber-400 select-all font-bold">WTU-2026-V4X2W7</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <a href="https://worldtechuniversity.com/certificates/verify" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-slate-400 hover:text-amber-300 transition-colors">
+                            Vérifier en ligne ↗
+                        </a>
+                        <a href="certificat-worldtech-securite-reseau.pdf" target="_blank" class="text-xs font-mono px-3 py-1.5 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/40 transition-colors flex items-center gap-1 font-semibold">
+                            <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                            <span>Ouvrir PDF</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificat 2 : Cisco - Introduction à la cybersécurité -->
+                <div class="rounded-2xl bg-[#0f172a] border border-slate-800 hover:border-cyan-500/50 transition-all p-6 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
+                            <span class="px-2.5 py-1 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/60 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+                                CISCO NETWORKING ACADEMY
+                            </span>
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 16 Oct 2026
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                            Introduction à la cybersécurité
+                        </h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Maîtrise des concepts de la cybersécurité : analyse des menaces, principes de confidentialité, intégrité et disponibilité (CIA Triad), et sécurisation des réseaux.
+                        </p>
+
+                        <!-- Aperçu de l'image cliquable -->
+                        <div class="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group/img cursor-pointer mb-4" onclick="openImageModal('certificat-cisco-cybersecurite.jpg', 'Cisco - Introduction à la cybersécurité')">
+                            <img src="certificat-cisco-cybersecurite.jpg" alt="Certificat Cisco Cybersécurité - barnabe kankoe" class="w-full h-40 object-cover object-top transition-transform duration-300 group-hover/img:scale-105">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs">
+                                <i data-lucide="zoom-in" class="w-4 h-4 text-cyan-400"></i>
+                                <span>Agrandir</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Bénéficiaire :</span>
+                                <span class="text-white font-semibold">barnabe kankoe</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>ID Certificat :</span>
+                                <span class="text-cyan-400 select-all font-bold">e068ad90...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Signataire : Lynn Bloomer</span>
+                        <a href="certificat-cisco-cybersecurite.jpg" target="_blank" class="text-xs font-mono text-cyan-400 hover:underline flex items-center gap-1 font-semibold">
+                            Original <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificat 3 : Cisco - Introduction à l'IA moderne -->
+                <div class="rounded-2xl bg-[#0f172a] border border-slate-800 hover:border-emerald-500/50 transition-all p-6 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
+                            <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="cpu" class="w-3.5 h-3.5"></i>
+                                CISCO NETWORKING ACADEMY
+                            </span>
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 16 Oct 2026
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-emerald-300 transition-colors">
+                            Introduction à l'IA moderne
+                        </h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Apprentissage automatique (Machine Learning), modèles de langage, impact sociotechnique de l'IA et cas d'usage pratiques dans le monde du numérique.
+                        </p>
+
+                        <!-- Aperçu de l'image cliquable -->
+                        <div class="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group/img cursor-pointer mb-4" onclick="openImageModal('certificat-cisco-ia.jpg', 'Cisco - Introduction à l\'IA moderne')">
+                            <img src="certificat-cisco-ia.jpg" alt="Certificat Cisco IA - barnabe kankoe" class="w-full h-40 object-cover object-top transition-transform duration-300 group-hover/img:scale-105">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs">
+                                <i data-lucide="zoom-in" class="w-4 h-4 text-emerald-400"></i>
+                                <span>Agrandir</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Bénéficiaire :</span>
+                                <span class="text-white font-semibold">barnabe kankoe</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>ID Certificat :</span>
+                                <span class="text-emerald-400 select-all font-bold">5a326274...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Signataire : Lynn Bloomer</span>
+                        <a href="certificat-cisco-ia.jpg" target="_blank" class="text-xs font-mono text-emerald-400 hover:underline flex items-center gap-1 font-semibold">
+                            Original <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+
+                <!-- Certificat 4 : ESIG Global Success - Attestation de participation (projet marketplace Vintage) -->
+                <div class="rounded-2xl bg-[#0f172a] border border-slate-800 hover:border-violet-500/50 transition-all p-6 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
+                            <span class="px-2.5 py-1 rounded bg-violet-950 text-violet-400 border border-violet-800/60 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+                                ESIG GLOBAL SUCCESS
+                            </span>
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 30 Avr 2026
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-violet-300 transition-colors">
+                            Attestation de participation
+                        </h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Participation active à la réalisation d'une plateforme de vente Vintage en ligne (marketplace), dans le cadre de la 10<sup>e</sup> semaine de professionnalisation (16 au 30 avril 2026).
+                        </p>
+
+                        <!-- Aperçu de l'image cliquable -->
+                        <div class="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group/img cursor-pointer mb-4" onclick="openImageModal('attestation-esig.jpg', 'ESIG Global Success - Attestation de participation')">
+                            <img src="attestation-esig.jpg" alt="Attestation de participation ESIG Global Success - barnabe kankoe" class="w-full h-40 object-cover object-top transition-transform duration-300 group-hover/img:scale-105">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs">
+                                <i data-lucide="zoom-in" class="w-4 h-4 text-violet-400"></i>
+                                <span>Agrandir</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Bénéficiaire :</span>
+                                <span class="text-white font-semibold">KANKOE E.M. Barnabé</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>Fait à :</span>
+                                <span class="text-violet-400 font-bold">Lomé</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <span class="text-[11px] font-mono text-slate-400">Directeur Général : Kokou SEDJRO</span>
+                        <a href="attestation-esig.jpg" target="_blank" class="text-xs font-mono text-violet-400 hover:underline flex items-center gap-1 font-semibold">
+                            Original <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Certificat 5 : WorldTech University - Bases de la cybersécurité -->
+                <div class="rounded-2xl bg-[#0f172a] border border-amber-500/40 hover:border-amber-400 transition-all p-6 flex flex-col justify-between group shadow-xl">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-4">
+                            <span class="px-2.5 py-1 rounded bg-amber-950 text-amber-400 border border-amber-800/60 font-semibold flex items-center gap-1.5">
+                                <i data-lucide="award" class="w-3.5 h-3.5"></i>
+                                WORLDTECH UNIVERSITY
+                            </span>
+                            <span class="text-emerald-400 flex items-center gap-1 font-semibold text-[11px]">
+                                <i data-lucide="check-circle-2" class="w-3.5 h-3.5"></i> 17 Oct 2026
+                            </span>
+                        </div>
+
+                        <h3 class="text-lg font-bold text-white mb-2 group-hover:text-amber-300 transition-colors">
+                            Bases de la cybersécurité
+                        </h3>
+                        <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+                            Niveau débutant : pourquoi la sécurité compte, mots de passe et phishing, appareils, réseaux et réaction en cas d'incident.
+                        </p>
+
+                        <!-- Aperçu de l'image cliquable -->
+                        <div class="relative rounded-xl overflow-hidden border border-slate-700 bg-slate-900 group/img cursor-pointer mb-4" onclick="openImageModal('certificat-cybersecurite.jpg', 'WorldTech University - Bases de la cybersécurité')">
+                            <img src="certificat-cybersecurite.jpg" alt="Certificat WorldTech University Bases de la cybersécurité - barnabe kankoe" class="w-full h-40 object-cover object-top transition-transform duration-300 group-hover/img:scale-105">
+                            <div class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-mono text-xs">
+                                <i data-lucide="zoom-in" class="w-4 h-4 text-amber-400"></i>
+                                <span>Agrandir</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/80 border border-slate-800 font-mono text-[11px] space-y-1">
+                            <div class="flex justify-between text-slate-400">
+                                <span>Bénéficiaire :</span>
+                                <span class="text-white font-semibold">KANKOE Barnabé</span>
+                            </div>
+                            <div class="flex justify-between text-slate-400">
+                                <span>ID Certificat :</span>
+                                <span class="text-amber-400 select-all font-bold">WTU-2026-UPL83N</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between gap-2 flex-wrap">
+                        <a href="https://worldtechuniversity.com/certificates/verify" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-slate-400 hover:text-amber-300 transition-colors">
+                            Vérifier en ligne
+                        </a>
+                        <a href="certificat-cybersecurite.pdf" target="_blank" class="text-xs font-mono px-3 py-1.5 rounded bg-amber-500/20 text-amber-300 hover:bg-amber-500/30 border border-amber-500/40 transition-colors flex items-center gap-1 font-semibold">
+                            PDF <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION COMPÉTENCES ================= -->
+        <section id="skills" class="py-16">
+            <div class="mb-12">
+                <div class="font-mono text-xs text-cyan-400 mb-2">// 03. HARD & SOFT SKILLS</div>
+                <h2 class="text-3xl font-bold text-white tracking-tight">Mes Compétences Techniques</h2>
+                <p class="text-slate-400 mt-2 max-w-2xl text-sm">
+                    Mes compétences acquises au cours de ma formation à ESIG Global Success, de mes certifications officielles et de mes projets pratiques.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. Systèmes d'exploitation -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 hover:border-emerald-500/40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-4">
+                        <i data-lucide="terminal" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Systèmes d'Exploitation</h3>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">Pratique quotidienne des environnements de travail professionnels.</p>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <strong>Linux</strong> : Commandes shell, arborescence</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <strong>Linux</strong> : Gestion des droits & permissions</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> <strong>Windows</strong> : Administration courante</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Utilisation des outils informatiques</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Web & Données -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 hover:border-cyan-500/40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-4">
+                        <i data-lucide="layout" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Développement Web</h3>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">Création de pages web modernes et gestion de bases de données.</p>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> <strong>HTML5</strong> : Notions & structuration</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> <strong>CSS3</strong> : Mise en page, styles responsives</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> <strong>Bases de données</strong> : Modélisation SQL</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span> Création et gestion de données</li>
+                    </ul>
+                </div>
+
+                <!-- 3. Programmation & Algorithmique -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 hover:border-purple-500/40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-4">
+                        <i data-lucide="code-2" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Programmation & POO</h3>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">Conception logique, algorithmes et paradigme orienté objet.</p>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> <strong>Java</strong> : Programmation Orientée Objet</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> <strong>Python</strong> : Notions & scripting</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> <strong>Algorithmique</strong> : Résolution de problèmes</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> POO : Classes, objets et modularité</li>
+                    </ul>
+                </div>
+
+                <!-- 4. Réseaux & Sécurité Réseau -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 hover:border-amber-500/40 transition-all duration-300">
+                    <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center mb-4">
+                        <i data-lucide="network" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white mb-2">Sécurité Réseau & Aptitudes</h3>
+                    <p class="text-xs text-slate-400 mb-4 leading-relaxed">Sécurité réseau avancée et qualités professionnelles.</p>
+                    <ul class="space-y-2 text-xs font-mono text-slate-300">
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> <strong>Firewalls & Zero Trust</strong> (WorldTech)</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> <strong>Monitoring & Hardening</strong> réseau</li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> <strong>Secure Wi-Fi & Remote Access</strong></li>
+                        <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> <strong>Apprentissage autonome & rigueur</strong></li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= SECTION PROJETS ================= -->
+        <section id="projects" class="py-16">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+                <div>
+                    <div class="font-mono text-xs text-cyan-400 mb-2">// 04. PROJETS & RÉALISATIONS</div>
+                    <h2 class="text-3xl font-bold text-white tracking-tight">Projets Concrets Réalisés</h2>
+                    <p class="text-slate-400 mt-2 text-sm max-w-xl">
+                        Des réalisations pratiques démontrant le passage des concepts théoriques à des applications concrètes.
+                    </p>
+                </div>
+
+                <!-- Boutons de filtrage -->
+                <div class="flex flex-wrap gap-2 font-mono text-xs" id="project-filters">
+                    <button class="filter-btn active px-3.5 py-1.5 rounded-md bg-cyan-500 text-slate-950 font-semibold transition-all" data-filter="all">Tous</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-md bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="web">Web & E-Commerce</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-md bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="data">Bases de Données</button>
+                    <button class="filter-btn px-3.5 py-1.5 rounded-md bg-slate-800 text-slate-300 hover:text-white transition-all" data-filter="sys">Systèmes & Réseaux</button>
+                </div>
+            </div>
+
+            <!-- Grille des projets -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="projects-grid">
+
+                <!-- Projet 1 : Site E-Commerce Vêtements Vintage (ESIG) -->
+                <div class="project-card rounded-xl bg-[#0f172a] border border-slate-800 hover:border-cyan-500/50 transition-all p-6 flex flex-col justify-between" data-category="web">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                            <span class="px-2 py-0.5 rounded bg-cyan-950 text-cyan-400 border border-cyan-800/50">E-Commerce Étudiant • ESIG Global Success</span>
+                            <span>Projet Réalisé</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 group flex items-center gap-2">
+                            <span>Plateforme de Vente de Vêtements Vintage</span>
+                            <i data-lucide="shopping-bag" class="w-4 h-4 text-cyan-400"></i>
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Conception et développement d'un site web de vente de vêtements vintage destiné aux étudiants d'ESIG Global Success. Ce projet m'a permis de développer mes compétences en développement web et en ergonomie d'interface.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-300 mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Création de pages web adaptées avec <strong>HTML</strong> et <strong>CSS</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Mise en valeur du catalogue d'articles et structuration de la navigation utilisateur.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Validation des formulaires et présentation soignée des articles.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">HTML</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">CSS</span>
+                            <span class="px-2 py-1 rounded bg-cyan-950 text-[11px] font-mono text-cyan-400">ESIG GS</span>
+                        </div>
+                        <span class="text-xs font-mono text-cyan-400 flex items-center gap-1 font-semibold">
+                            Projet Pratique <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Projet 2 : Site Web Connecté à une Base de Données -->
+                <div class="project-card rounded-xl bg-[#0f172a] border border-slate-800 hover:border-emerald-500/50 transition-all p-6 flex flex-col justify-between" data-category="data">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                            <span class="px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/50">Base de Données & Persistance</span>
+                            <span>Projet Réalisé</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                            <span>Site Web Connecté à une Base de Données</span>
+                            <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i>
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Développement d'un site web dynamique connecté à une base de données, axé sur le stockage, la gestion et la restitution fluide des données utilisateurs et articles.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-300 mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Création et modélisation de la base de données relationnelle.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Exécution de requêtes <strong>SQL</strong> pour l'enregistrement et l'affichage des informations.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Prise en compte de l'intégrité et de la persistance des données.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Bases de données</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">SQL</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Web</span>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400 flex items-center gap-1 font-semibold">
+                            Projet Pratique <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Projet 3 : Systèmes d'Exploitation Linux & Réseaux -->
+                <div class="project-card rounded-xl bg-[#0f172a] border border-slate-800 hover:border-purple-500/50 transition-all p-6 flex flex-col justify-between" data-category="sys">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                            <span class="px-2 py-0.5 rounded bg-purple-950 text-purple-400 border border-purple-800/50">Linux & Windows • Réseaux</span>
+                            <span>Travaux Pratiques</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                            <span>Pratique des Systèmes Linux & Réseaux</span>
+                            <i data-lucide="terminal" class="w-4 h-4 text-purple-400"></i>
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Utilisation approfondie des systèmes Linux et Windows, manipulation de la ligne de commande, gestion des permissions et compréhension de l'architecture des réseaux informatiques.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-300 mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Utilisation des commandes shell Linux et gestion des fichiers & utilisateurs.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-purple-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Fondamentaux réseaux : adressage IP, protocoles TCP/IP et modèles d'échange.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-cyan-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Mise en pratique des notions de sécurité réseau certifiées par WorldTech et Cisco.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Linux</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Windows</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Réseaux</span>
+                        </div>
+                        <span class="text-xs font-mono text-purple-400 flex items-center gap-1 font-semibold">
+                            Laboratoire <i data-lucide="activity" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Projet 4 : Algorithmique & Programmation (Java / Python) -->
+                <div class="project-card rounded-xl bg-[#0f172a] border border-slate-800 hover:border-amber-500/50 transition-all p-6 flex flex-col justify-between" data-category="sys">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-3">
+                            <span class="px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800/50">POO & Algorithmes</span>
+                            <span>Programmation</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2 flex items-center gap-2">
+                            <span>Algorithmique & Notions de Programmation</span>
+                            <i data-lucide="code-2" class="w-4 h-4 text-amber-400"></i>
+                        </h3>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                            Conception d'algorithmes et résolution méthodique de problèmes informatiques à l'aide de la programmation orientée objet en Java et de scripts Python.
+                        </p>
+                        <div class="space-y-2 text-xs text-slate-300 mb-4">
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Structuration orientée objet : classes, méthodes et découpage logique en <strong>Java</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="check" class="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Algorithmes de traitement et automatisation en <strong>Python</strong>.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+                                <span>Apprentissage autonome et adaptation constante aux nouveaux concepts.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Java</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Python</span>
+                            <span class="px-2 py-1 rounded bg-slate-800 text-[11px] font-mono text-slate-300">Algorithmique</span>
+                        </div>
+                        <span class="text-xs font-mono text-amber-400 flex items-center gap-1 font-semibold">
+                            Études <i data-lucide="check-circle" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE TERMINAL HUD ================= -->
+        <section id="terminal-section" class="py-16">
+            <div class="mb-6">
+                <div class="font-mono text-xs text-cyan-400 mb-2">// 05. CONSOLE INTERACTIVE (CLI)</div>
+                <h2 class="text-3xl font-bold text-white tracking-tight">Terminal Interactif pour Recruteurs</h2>
+                <p class="text-slate-400 mt-2 text-sm max-w-xl">
+                    Tapez des commandes ou cliquez sur les pastilles de raccourcis pour consulter directement mon parcours, mes compétences et mes coordonnées.
+                </p>
+            </div>
+
+            <!-- Terminal Box -->
+            <div class="rounded-xl bg-[#0a0f1d] border border-cyan-500/30 shadow-2xl shadow-cyan-950/40 overflow-hidden font-mono">
+                <!-- Bar de titre style macOS / Linux -->
+                <div class="bg-[#111827] px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+                        <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span>
+                        <span class="ml-3 text-xs text-slate-400">barnabe@esig-global-success: ~ (bash 5.2)</span>
+                    </div>
+                    <div class="text-[11px] text-cyan-400 flex items-center gap-1.5">
+                        <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                        <span>INTERACTIVE CLI</span>
+                    </div>
+                </div>
+
+                <!-- Suggestions de commandes cliquables -->
+                <div class="px-4 py-2.5 bg-slate-900/60 border-b border-slate-800/80 flex flex-wrap items-center gap-2 text-xs">
+                    <span class="text-slate-500 text-[11px]">Commandes rapides :</span>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="help">help</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="whoami">whoami</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="certifs">certifs</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="skills">skills</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="projects">projects</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="formations">formations</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="contact">contact</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="cv">cv</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="photo">photo</button>
+                    <button class="cmd-pill px-2.5 py-1 rounded bg-slate-800 hover:bg-cyan-500/20 text-cyan-300 border border-slate-700 hover:border-cyan-500/40 transition-colors" data-cmd="clear">clear</button>
+                </div>
+
+                <!-- Zone d'affichage du Terminal -->
+                <div id="terminal-body" class="p-5 text-sm h-80 overflow-y-auto space-y-2 text-slate-300 scrollbar-thin">
+                    <div class="text-slate-400">
+                        Bienvenue sur la console interactive de <span class="text-cyan-400 font-bold">KANKOE EKOUÉ MAWUKO BARNABE</span> !<br/>
+                        Tapez <span class="text-cyan-400 font-bold">help</span>, <span class="text-amber-400 font-bold">certifs</span> ou <span class="text-emerald-400 font-bold">formations</span> pour commencer.
+                    </div>
+                </div>
+
+                <!-- Input Prompt -->
+                <div class="p-3 bg-slate-900/90 border-t border-slate-800 flex items-center gap-2">
+                    <span class="text-emerald-400 font-bold">barnabe@esig-global-success</span><span class="text-slate-500">:</span><span class="text-cyan-400 font-bold">~</span><span class="text-slate-300">$</span>
+                    <input type="text" id="terminal-input" class="flex-1 bg-transparent border-none outline-none text-white font-mono text-sm placeholder-slate-600" placeholder="Tapez une commande (ex: certifs, formations, cv, whoami)..." autocomplete="off" spellcheck="false">
+                    <button id="terminal-submit" class="px-3 py-1 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-xs font-mono transition-colors">Exécuter</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= FORMATIONS ACADÉMIQUES EXACTES DU CV ================= -->
+        <section id="about" class="py-16">
+            <div class="mb-12">
+                <div class="font-mono text-xs text-cyan-400 mb-2">// 01. FORMATIONS ACADÉMIQUES & PARCOURS</div>
+                <h2 class="text-3xl font-bold text-white tracking-tight">Formations Académiques & Profil</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Timeline Études officielles -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 space-y-6">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="w-5 h-5 text-cyan-400"></i>
+                        <span>Cursus Académique</span>
+                    </h3>
+
+                    <div class="relative pl-6 border-l-2 border-slate-800 space-y-6">
+                        <!-- Licence 2 -->
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-cyan-400 border-2 border-[#0f172a]"></span>
+                            <div class="font-mono text-xs text-cyan-400">2026 – 2027 • En cours</div>
+                            <div class="font-bold text-white text-base">LICENCE 2 EN INFORMATIQUE</div>
+                            <div class="text-xs text-slate-300 font-medium mt-1">ESIG Global Success — Lomé, Togo</div>
+                            <p class="text-xs text-slate-400 mt-2 leading-relaxed">
+                                Programmation avancée, systèmes d’exploitation (Windows et Linux), création de pages web, sécurité réseau et bases de données.
+                            </p>
+                        </div>
+
+                        <!-- Licence 1 -->
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#0f172a]"></span>
+                            <div class="font-mono text-xs text-emerald-400">2025 – 2026</div>
+                            <div class="font-bold text-white text-base">LICENCE 1 EN INFORMATIQUE</div>
+                            <div class="text-xs text-slate-300 font-medium mt-1">ESIG Global Success — Lomé, Togo</div>
+                            <p class="text-xs text-slate-400 mt-1 leading-relaxed">
+                                Algorithmique fondamentale, initiation à la programmation, bases du développement web et architecture des ordinateurs.
+                            </p>
+                        </div>
+
+                        <!-- Bac 2 -->
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-600 border-2 border-[#0f172a]"></span>
+                            <div class="font-mono text-xs text-slate-400">2024 – 2025</div>
+                            <div class="font-bold text-slate-200 text-base">BACCALAURÉAT DEUXIEME PARTIE, SÉRIE D</div>
+                            <div class="text-xs text-slate-400 mt-1">Lycée GBENYEDZI-KOPE</div>
+                            <p class="text-xs text-slate-500 mt-1">Série scientifique (Mathématiques, Sciences Physiques et SVT).</p>
+                        </div>
+
+                        <!-- Bac 1 -->
+                        <div class="relative">
+                            <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-slate-700 border-2 border-[#0f172a]"></span>
+                            <div class="font-mono text-xs text-slate-500">2023 – 2024</div>
+                            <div class="font-bold text-slate-300 text-sm">BACCALAURÉAT PREMIERE PARTIE, SÉRIE D</div>
+                            <div class="text-xs text-slate-400 mt-1">Lycée GBENYEDZI-KOPE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Centres d'intérêt & Qualités -->
+                <div class="rounded-xl bg-[#0f172a] border border-slate-800 p-6 space-y-6">
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i data-lucide="heart" class="w-5 h-5 text-red-400"></i>
+                        <span>Centres d'Intérêt & Qualités</span>
+                    </h3>
+
+                    <!-- Cartes Centres d'intérêt -->
+                    <div class="grid grid-cols-2 gap-3 text-xs">
+                        <div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <div class="p-2 rounded bg-cyan-500/10 text-cyan-400">
+                                <i data-lucide="activity" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Sport</div>
+                                <div class="text-[11px] text-slate-400">Discipline & esprit d'équipe</div>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <div class="p-2 rounded bg-emerald-500/10 text-emerald-400">
+                                <i data-lucide="book-open" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Lecture</div>
+                                <div class="text-[11px] text-slate-400">Curiosité & apprentissage</div>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <div class="p-2 rounded bg-purple-500/10 text-purple-400">
+                                <i data-lucide="plane" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Voyage</div>
+                                <div class="text-[11px] text-slate-400">Ouverture d'esprit</div>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-lg bg-slate-900/60 border border-slate-800 flex items-center gap-3">
+                            <div class="p-2 rounded bg-amber-500/10 text-amber-400">
+                                <i data-lucide="music" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Musique</div>
+                                <div class="text-[11px] text-slate-400">Créativité & écoute</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Aptitudes professionnelles -->
+                    <div class="space-y-3 pt-2 text-xs">
+                        <div class="p-3 rounded-lg bg-slate-900/40 border border-slate-800/80 flex items-start gap-3">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-emerald-400 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-bold text-white">Apprentissage autonome :</span>
+                                <span class="text-slate-400"> Obtention de 4 certifications techniques par démarche proactive personnelle, et d'une attestation de participation à un projet ESIG.</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3 rounded-lg bg-slate-900/40 border border-slate-800/80 flex items-start gap-3">
+                            <i data-lucide="compass" class="w-4 h-4 text-cyan-400 mt-0.5 flex-shrink-0"></i>
+                            <div>
+                                <span class="font-bold text-white">Capacité d'adaptation :</span>
+                                <span class="text-slate-400"> Rigueur et réactivité pour m'intégrer rapidement dans vos équipes.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACT SECTION AVEC COORDONNÉES EXACTES ================= -->
+        <section id="contact" class="py-16">
+            <div class="rounded-2xl bg-gradient-to-b from-[#0f172a] to-[#0a0e1a] border border-slate-800 p-8 sm:p-12 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+                <div class="flex flex-col items-center mb-6">
+                    <div class="relative mb-3">
+                        <img src="photo-barnabe.jpg" alt="Photo KANKOE Ekoué Mawuko Barnabé" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover ring-4 ring-cyan-500/30 shadow-xl shadow-cyan-950/50">
+                        <span class="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-slate-900" title="Disponible pour stage"></span>
+                    </div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <span>ME CONTACTER DIRECTEMENT</span>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight mb-3">
+                    Discutons de votre opportunité de Stage / Alternance
+                </h2>
+                <p class="text-slate-300 max-w-xl mx-auto text-sm sm:text-base mb-2 leading-relaxed">
+                    Je suis <strong>KANKOE EKOUÉ MAWUKO BARNABE</strong>, étudiant en 2ᵉ année de Licence en Informatique à <strong>ESIG Global Success</strong>.
+                </p>
+                <p class="text-slate-400 max-w-xl mx-auto text-sm mb-8 leading-relaxed">
+                    N'hésitez pas à me joindre par téléphone, WhatsApp ou par email pour échanger sur mes compétences et mes projets.
+                </p>
+
+                <!-- 3 Cartes de Contact Interactives -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8 text-left">
+                    
+                    <!-- Carte Téléphone -->
+                    <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center mb-3">
+                                <i data-lucide="phone-call" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-xs font-mono text-slate-400">TÉLÉPHONE & WHATSAPP</div>
+                            <div class="text-base font-bold text-white mt-1 font-mono tracking-tight" id="phone-number">+228 70 66 35 13</div>
+                            <p class="text-[11px] text-slate-400 mt-1">Disponible pour appels et échanges WhatsApp.</p>
+                        </div>
+                        <div class="pt-4 mt-3 border-t border-slate-800 flex items-center gap-2">
+                            <a href="tel:+22870663513" class="flex-1 text-center py-2 px-2 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-colors">
+                                Appeler
+                            </a>
+                            <a href="https://wa.me/22870663513" target="_blank" class="flex-1 text-center py-2 px-2 rounded bg-slate-800 hover:bg-slate-700 text-emerald-300 font-semibold text-xs border border-slate-700 transition-colors">
+                                WhatsApp
+                            </a>
+                            <button id="copy-phone-btn" title="Copier le numéro" class="p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Carte Email -->
+                    <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-cyan-500/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 flex items-center justify-center mb-3">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-xs font-mono text-slate-400">ADRESSE E-MAIL</div>
+                            <div class="text-sm font-bold text-white mt-1 font-mono break-all" id="email-address">barnabekankoe58@gmail.com</div>
+                            <p class="text-[11px] text-slate-400 mt-1">Réponse rapide assurée sous 24h.</p>
+                        </div>
+                        <div class="pt-4 mt-3 border-t border-slate-800 flex items-center gap-2">
+                            <a href="mailto:barnabekankoe58@gmail.com" class="flex-1 text-center py-2 px-2 rounded bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs transition-colors">
+                                Envoyer un email
+                            </a>
+                            <button id="copy-email-btn" title="Copier l'adresse email" class="p-2 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 transition-colors">
+                                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Carte CV -->
+                    <div class="p-5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-purple-500/50 transition-all group flex flex-col justify-between">
+                        <div>
+                            <div class="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-3">
+                                <i data-lucide="file-check" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-xs font-mono text-slate-400">CURRICULUM VITAE</div>
+                            <div class="text-base font-bold text-white mt-1">CV Officiel (PDF)</div>
+                            <p class="text-[11px] text-slate-400 mt-1">Téléchargeable en PDF ou consultable en ligne.</p>
+                        </div>
+                        <div class="pt-4 mt-3 border-t border-slate-800 flex items-center gap-2">
+                            <button id="open-cv-btn-card" class="flex-1 py-2 px-2 rounded bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors flex items-center justify-center gap-1">
+                                <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                                <span>Aperçu CV</span>
+                            </button>
+                            <a href="cv.pdf" download="CV_KANKOE_EKOUÉ_MAWUKO_BARNABE.pdf" class="py-2 px-3 rounded bg-slate-800 hover:bg-slate-700 text-purple-300 font-semibold text-xs border border-slate-700 transition-colors flex items-center justify-center gap-1" title="Télécharger le fichier PDF officiel">
+                                <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Toast de confirmation de copie -->
+                <div id="copy-toast" class="hidden fixed bottom-6 right-6 px-4 py-2.5 rounded-lg bg-emerald-500 text-slate-950 font-mono text-xs font-bold shadow-xl flex items-center gap-2 z-50 animate-bounce">
+                    <i data-lucide="check-circle-2" class="w-4 h-4"></i>
+                    <span id="toast-message">Copié dans le presse-papier !</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= MODAL DU CV VISUEL (AVEC ONGLETS IMAGE / TEXTE IMPRIMABLE / PDF) ================= -->
+    <div id="cv-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl bg-white text-slate-900 rounded-2xl shadow-2xl overflow-hidden my-8 border border-slate-200">
+            
+            <!-- Barre de contrôle supérieure -->
+            <div class="bg-slate-900 text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                <div class="flex items-center gap-2 font-mono text-sm text-cyan-400">
+                    <i data-lucide="file-text" class="w-4 h-4"></i>
+                    <span>CV_KANKOE_EKOUÉ_MAWUKO_BARNABE.pdf</span>
+                </div>
+                <!-- Actions -->
+                <div class="flex items-center gap-2">
+                    <a href="cv.pdf" download="CV_KANKOE_EKOUÉ_MAWUKO_BARNABE.pdf" class="px-3 py-1 rounded text-xs font-mono bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition-colors flex items-center gap-1">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                        <span>Télécharger le PDF</span>
+                    </a>
+                    <button onclick="window.print()" class="px-3 py-1 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs font-mono transition-colors flex items-center gap-1.5">
+                        <i data-lucide="printer" class="w-3.5 h-3.5"></i>
+                        <span>Imprimer</span>
+                    </button>
+                    <button id="close-cv-modal-btn" class="p-1.5 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenu Conforme au CV PDF Actualisé -->
+            <div class="p-8 sm:p-12 space-y-6 bg-white font-sans text-slate-800" id="cv-printable">
+                
+                <!-- En-tête CV avec Photo d'Identité Officielle -->
+                <div class="border-b-2 border-slate-900 pb-5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+                    <div class="flex flex-col sm:flex-row items-center gap-4">
+                        <img src="photo-barnabe.jpg" alt="Photo KANKOE Ekoué Mawuko Barnabé" class="w-20 h-20 sm:w-24 sm:h-24 rounded-xl object-cover border-2 border-slate-900 shadow-sm flex-shrink-0">
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-950 tracking-wide uppercase">KANKOE EKOUÉ MAWUKO BARNABE</h1>
+                            <p class="text-sm font-semibold text-cyan-800 mt-1">Étudiant en deuxième année de Licence en Informatique</p>
+                            <p class="text-xs text-slate-500 font-mono mt-0.5">ESIG Global Success • Cybersécurité & Systèmes</p>
+                        </div>
+                    </div>
+                    <div class="text-xs text-slate-600 sm:text-right space-y-1 flex-shrink-0">
+                        <div>📍 Lomé, Togo</div>
+                        <div>📞 Téléphone : <a href="tel:+22870663513" class="font-bold text-slate-900 hover:text-cyan-700">+228 70 66 35 13</a></div>
+                        <div>✉️ E-mail : <a href="mailto:barnabekankoe58@gmail.com" class="font-bold text-slate-900 hover:text-cyan-700">barnabekankoe58@gmail.com</a></div>
+                    </div>
+                </div>
+
+                <!-- Section PROFIL -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">PROFIL</h2>
+                    <p class="text-xs leading-relaxed text-slate-700 text-justify">
+                        Étudiant en deuxième année de Licence en Informatique à <strong>ESIG Global Success</strong>. Motivé, sérieux et désireux de développer mes compétences dans le domaine du numérique, je m’intéresse à la programmation, aux systèmes d’exploitation et à la création de pages web. Je souhaite approfondir mes connaissances théoriques et pratiques à travers mes études et mes projets.
+                    </p>
+                </div>
+
+                <!-- Section FORMATIONS ACADÉMIQUES (AVEC LICENCE 1 & LICENCE 2 ESIG) -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-3 font-mono">FORMATIONS ACADÉMIQUES</h2>
+                    <div class="space-y-3 text-xs">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">LICENCE 2 EN INFORMATIQUE</div>
+                                <div class="text-slate-600">ESIG Global Success — En cours</div>
+                            </div>
+                            <span class="font-mono text-slate-500 font-semibold">2026 – 2027</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-bold text-slate-900 text-sm">LICENCE 1 EN INFORMATIQUE</div>
+                                <div class="text-slate-600">ESIG Global Success</div>
+                            </div>
+                            <span class="font-mono text-slate-500 font-semibold">2025 – 2026</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-bold text-slate-900">BACCALAURÉAT DEUXIEME PARTIE, SÉRIE D</div>
+                                <div class="text-slate-600">Lycée GBENYEDZI-KOPE</div>
+                            </div>
+                            <span class="font-mono text-slate-500 font-semibold">2024 – 2025</span>
+                        </div>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="font-bold text-slate-900">BACCALAURÉAT PREMIERE PARTIE, SÉRIE D</div>
+                                <div class="text-slate-600">Lycée GBENYEDZI-KOPE</div>
+                            </div>
+                            <span class="font-mono text-slate-500 font-semibold">2023 – 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section COMPÉTENCES & CERTIFICATS -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">COMPÉTENCES & CERTIFICATIONS</h2>
+                    <ul class="text-xs space-y-1.5 text-slate-700 list-disc list-inside">
+                        <li><strong>Certifications officielles (2026) :</strong> 
+                            WorldTech University (Sécurité Réseau & Bases de la cybersécurité) • Cisco Networking Academy (Cybersécurité & IA moderne) • ESIG Global Success (Attestation de participation, projet marketplace Vintage)
+                        </li>
+                        <li><strong>Utilisation des systèmes d’exploitation :</strong> Windows et Linux</li>
+                        <li><strong>Développement web :</strong> Notions de HTML et CSS (pages responsives)</li>
+                        <li><strong>Notions de programmation :</strong> Java, Python, Algorithmique et POO</li>
+                        <li><strong>Bases de données :</strong> Modélisation et requêtes SQL</li>
+                        <li><strong>Utilisation des outils informatiques</strong></li>
+                        <li><strong>Apprentissage autonome et capacité d’adaptation</strong></li>
+                    </ul>
+                </div>
+
+                <!-- Section CENTRES D'INTÉRÊT -->
+                <div>
+                    <h2 class="text-xs font-bold uppercase tracking-wider text-slate-950 border-b border-slate-300 pb-1 mb-2 font-mono">CENTRES D’INTÉRÊT</h2>
+                    <div class="flex flex-wrap gap-4 text-xs font-medium text-slate-700">
+                        <span>⚽ Sport</span>
+                        <span class="text-slate-300">•</span>
+                        <span>📖 Lecture</span>
+                        <span class="text-slate-300">•</span>
+                        <span>✈️ Voyage</span>
+                        <span class="text-slate-300">•</span>
+                        <span>🎵 Musique</span>
+                    </div>
+                </div>
+
+                <!-- Pied de page du CV -->
+                <div class="pt-4 border-t border-slate-200 flex justify-between items-center text-[10px] text-slate-400">
+                    <span>CV officiel de KANKOE EKOUÉ MAWUKO BARNABE</span>
+                    <span>Lomé, Togo • Tél : +228 70 66 35 13 • barnabekankoe58@gmail.com</span>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================= MODAL DE ZOOM SUR IMAGE (CERTIFICATS) ================= -->
+    <div id="image-modal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="relative max-w-4xl w-full bg-slate-900 rounded-2xl overflow-hidden border border-slate-700 shadow-2xl">
+            <div class="p-4 bg-slate-800 flex items-center justify-between border-b border-slate-700">
+                <span id="image-modal-title" class="font-mono text-sm text-cyan-300 font-bold">Certificat Cisco</span>
+                <button id="close-image-modal-btn" class="p-1.5 rounded bg-slate-700 hover:bg-slate-600 text-white transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div class="p-4 flex items-center justify-center bg-black/40">
+                <img id="image-modal-img" src="" alt="Zoom Certificat" class="max-w-full max-h-[80vh] object-contain rounded-lg shadow-lg">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-[#060910] py-8 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>
+                <span>[>] KANKOE EKOUÉ MAWUKO BARNABE • ESIG Global Success • Certifié Sécurité & Réseaux • 2026</span>
+            </div>
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="tel:+22870663513" class="hover:text-emerald-400">+228 70 66 35 13</a>
+                <span>•</span>
+                <a href="mailto:barnabekankoe58@gmail.com" class="hover:text-cyan-400">barnabekankoe58@gmail.com</a>
+                <span>•</span>
+                <a href="#hero" class="hover:text-cyan-400">Haut ↑</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts du Terminal & Interactivité -->
+    <script src="script.js"></script>
+    <script>
+        // Initialisation des icônes Lucide
+        lucide.createIcons();
+    </script>
+</body>
+</html>
